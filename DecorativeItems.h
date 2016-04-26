@@ -11,6 +11,7 @@
 
 @interface DecorativeItems : NSObject{
 NSInteger cost;
+bool isBeingUsed;
 NSInteger decorativeValue;
 UIImage *itemPic;
 }

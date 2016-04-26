@@ -120,8 +120,8 @@ bool foodInScene = false;
     NSLog (@"Total Cats in Master Array %i", [[GameData sharedGameData].allCatsInGame count]);
     NSArray *catsNames = [[GameData sharedGameData].allCatsInGame allKeys];
     NSLog(@"%@", catsNames);
-    Cats *checkThisCatOut = [[GameData sharedGameData].allCatsInGame objectForKey:catsNames[5]];
-    NSLog (@" This Cat's Name is %@ and its loyalty threshold is  %i", checkThisCatOut.name, checkThisCatOut.loyaltyThreshold);
+    Cats *checkThisCatOut = [[GameData sharedGameData].allCatsInGame objectForKey:catsNames[1]];
+    NSLog (@" This Cat's Name is %@ and its current loyalty is  %i", checkThisCatOut.name, checkThisCatOut.currLoyaltyCounter);
     NSLog (@"-----------------------------------------------------------");
 
     

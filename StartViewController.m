@@ -179,7 +179,7 @@
     
     highScore1 = [GameData sharedGameData].highScore;
     NSArray *posArray1 = @[@150, @150];
-    
+    //[[GameData sharedGameData].CatsAndPosOnScreen removeAllObjects];
     //[GameData sharedGameData].CatsAndPosOnScreen = [[NSMutableDictionary alloc]init];
     //[GameData sharedGameData].ItemsAndPosOnScreen = [[NSMutableDictionary alloc]init];
     
@@ -192,8 +192,12 @@
     //[[GameData sharedGameData].ItemsAndPosOnScreen setObject: posArray1 forKey:@"CatBed"]; /// INITIAL //// DATA ^^ the key will actually be an item object
     
     
-    Cats *catToAddOnScreen = [[GameData sharedGameData].allCatsInGame objectForKey:@"Lizard"];
-    [[GameData sharedGameData].CatsAndPosOnScreen setObject:posArray1 forKey:catToAddOnScreen];  //<---- LINE WITH TROUBLE. copywithzone
+    //Cats *catToAddOnScreen = [[GameData sharedGameData].allCatsInGame objectForKey:@"Lizard"];
+    [[GameData sharedGameData].CatsAndPosOnScreen setObject:posArray1 forKey:@"Lizard"];  //<---- LINE WITH TROUBLE. copywithzone
+    
+    // MUY IMPORTANTE BELOWWWWWWWW
+    
+    // ^^ PRevious two lines....instead of actual cat and position, just use the cat's name as key...instead of actual cat object. much simpler
     [[GameData sharedGameData].ItemsAndPosOnScreen setObject: posArray1 forKey:@"CatBed"];
     
     
@@ -211,6 +215,32 @@
     int howManyCatsOnScreen = [currCatsAndPosOnScreen count];
     NSMutableArray *catsCurrentlyOnScreen = [[NSMutableArray alloc]initWithArray: [currCatsAndPosOnScreen allKeys]];
     // ^^ all the keys (which should be cat objects) are put into the catsCurrentlyOnScreen Array.
+    
+    ////////// TESTING PURPOSES
+    
+    /*Cats *tryDeletingCat = catsCurrentlyOnScreen[0]; *************** !!! <---- now this entire block will give me errors because catsCurrentlyOnScreen
+     ////////////Now only contains strings (of the cat's names) instead of the actual cat objects.
+    NSLog(@"***************************");
+    NSLog(@"What cat am I trying to delete from screen? %@ and what is his current loyalty? %i <--- All from tryDeletingCat datastruct", tryDeletingCat.name, tryDeletingCat.currLoyaltyCounter);
+    tryDeletingCat.currLoyaltyCounter ++;
+    NSLog(@"This is trydeletingcat's new loyaltyCounter: %i", tryDeletingCat.currLoyaltyCounter);*/
+    
+    NSLog(@"***************************");
+    
+    Cats *actualLizard = [[GameData sharedGameData].allCatsInGame objectForKey: catsCurrentlyOnScreen[0]];
+    NSLog (@"ActualLizard's name: %@",actualLizard.name);
+    NSLog(@"ActuaLizard's current Loyalty Counter %i", actualLizard.currLoyaltyCounter);
+    actualLizard.currLoyaltyCounter --;
+    NSLog(@" After I subtract ActuaLizard's current Loyalty Counter by 1, I get %i", actualLizard.currLoyaltyCounter);
+
+    
+    NSLog(@"***************************");
+
+
+    
+    
+    
+    //////////////////////////// ^^ SHOWED THAT YOU NEED TO MAKE ALL CHANGES IN CAT PROPERTIES IN THE MASTER CAT ARRAY
     if (howManyCatsOnScreen > 0){
         int randomIntToUse = 6;
         for (int abc = 0; abc < [catsCurrentlyOnScreen count]; abc ++){
@@ -218,7 +248,9 @@
             if (result == 0){ ///// DELETE THE CAT FROM ON SCREEN IF RESULT = O
                 Cats *deletedCat = catsCurrentlyOnScreen[abc];
                 
-                ///// ^^^^^^^ FOR DELETED CAT, we may have to actually access the cat in the master cat array (allCatsInGame) and change its properties there TOO. This is because deletedCat may just be a copy, and not a pointer to the original. will have to figure this out. 
+                ///// ^^^^^^^ FOR DELETED CAT, we may have to actually access the cat in the master cat array (allCatsInGame) and change its properties there TOO. This is because deletedCat may just be a copy, and not a pointer to the original. will have to figure this out.
+                
+                /// ^^ YEA, JUST TESTED IT. YOU DEFINITELY HAVE TO DO THAT.
                 
                 
                 if (deletedCat.currLoyaltyCounter < deletedCat.maxLoyalty){

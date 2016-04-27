@@ -14,6 +14,7 @@
 @property (strong, nonatomic) NSMutableDictionary *CatsAndPosOnScreen;
 @property (strong, nonatomic) NSMutableArray *testArray;
 @property (strong, nonatomic) NSMutableDictionary *allCatsInGame;
+@property (strong, nonatomic) NSMutableDictionary *allItemsInGame;
 @property (assign, nonatomic) int numClicks; /////// for testing purposes
 @property (assign, nonatomic) int highScore; /////// for testing purposes
 @property (assign, nonatomic) bool isFood;

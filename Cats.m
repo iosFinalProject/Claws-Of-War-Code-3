@@ -23,6 +23,7 @@ static NSString* const SSCatsSpecificItemsKey = @"specificItems123";
 static NSString* const SSCatsInClanKey = @"inClan123";
 static NSString* const SSCatsOnScreenKey = @"OnScreen123";
 static NSString* const SSCatsAvailableKey = @"Available123";
+static NSString* const SSCatsAssociatedItem = @"associatedItem123";
 
 
 
@@ -40,6 +41,8 @@ static NSString* const SSCatsAvailableKey = @"Available123";
     [encoder encodeBool:self.inClan forKey:SSCatsInClanKey];
     [encoder encodeBool:self.onScreen forKey:SSCatsOnScreenKey];
     [encoder encodeBool:self.available forKey:SSCatsAvailableKey];
+    [encoder encodeObject:self.associatedItem forKey: SSCatsAssociatedItem];
+
     
 }
 
@@ -56,6 +59,7 @@ static NSString* const SSCatsAvailableKey = @"Available123";
         _inClan = [decoder decodeBoolForKey: SSCatsInClanKey];
         _onScreen = [decoder decodeBoolForKey: SSCatsOnScreenKey];
         _available = [decoder decodeBoolForKey: SSCatsAvailableKey];
+        _associatedItem = [decoder decodeObjectForKey: SSCatsAssociatedItem];
         
     }
     return self;

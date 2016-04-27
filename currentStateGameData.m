@@ -13,7 +13,7 @@
 int highScore1;
 NSMutableDictionary *currCatsAndPosOnScreen;
 NSMutableDictionary *currItemsAndPosOnScreen;
-NSArray *allCatsInGame; 
+//NSArray *allCatsInGame;
 bool food1; 
 
 @end

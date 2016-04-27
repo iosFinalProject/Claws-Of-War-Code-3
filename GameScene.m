@@ -79,15 +79,19 @@ bool foodInScene = false;
     NSLog (@" How many Cats in currCatsAndPos: %i", [currCatsAndPosOnScreen count]);
     NSLog (@"  How many cats in gameshared data: %i", [[GameData sharedGameData].CatsAndPosOnScreen count]);
 
-    
-    NSArray *positionArray12 = currCatsAndPosOnScreen[keyArray [0]];
-    //NSArray *positionArray12 = [GameData sharedGameData].CatsAndPosOnScreen[keyArray [0]];
-    int xInt = [positionArray12[0] integerValue];
-    int yInt = [positionArray12 [1] integerValue];
-    
-    NSLog(@ "%i", xInt);
-    NSLog(@ "%i", yInt);
-    NSLog (@"-----------------------------------------------------------");
+    if ([currCatsAndPosOnScreen count] != 0){
+        
+        NSNumber *positionAssociatedWithCat = currCatsAndPosOnScreen[keyArray [0]];
+        //NSArray *positionArray12 = [GameData sharedGameData].CatsAndPosOnScreen[keyArray [0]];
+        //int xInt = [positionArray12[0] integerValue];
+        //int yInt = [positionArray12 [1] integerValue];
+        
+        NSLog(@ "%@", positionAssociatedWithCat);
+        //NSLog(@ "%i", yInt);
+        NSLog (@"-----------------------------------------------------------");
+        
+    }
+
 
     
     
@@ -108,18 +112,22 @@ bool foodInScene = false;
     NSLog (@"How many Items in curritemsAndPos: %i", [currItemsAndPosOnScreen count]);
     NSLog (@"  How many items in gameshared data: %i", [[GameData sharedGameData].ItemsAndPosOnScreen count]);
     
-    NSArray *positionArrayItems12 = currItemsAndPosOnScreen[keyArrayItems [0]];
+    NSNumber *positionAssociatedWithItem = currItemsAndPosOnScreen[keyArrayItems [0]];
     //NSArray *positionArrayItems12 = [GameData sharedGameData].ItemsAndPosOnScreen[keyArray [0]];
-    int xIntItems = [positionArrayItems12[0] integerValue];
-    int yIntItems = [positionArrayItems12 [1] integerValue];
+    //int xIntItems = [positionArrayItems12[0] integerValue];
+    //int yIntItems = [positionArrayItems12 [1] integerValue];
     
-    NSLog(@ "%i", xIntItems);
-    NSLog(@ "%i", yIntItems);
+    NSLog(@ "%@", positionAssociatedWithItem);
+    //NSLog(@ "%i", yIntItems);
     NSLog (@"-----------------------------------------------------------");
     
     NSLog (@"Total Cats in Master Array %i", [[GameData sharedGameData].allCatsInGame count]);
     NSArray *catsNames = [[GameData sharedGameData].allCatsInGame allKeys];
     NSLog(@"%@", catsNames);
+    for (int abcd = 0; abcd<[catsNames count]; abcd++){
+        Cats *checkCatAssociatedItem = [[GameData sharedGameData].allCatsInGame objectForKey:catsNames[abcd]];
+        NSLog (@"The cat is %@ and it's associated item is %@", checkCatAssociatedItem.name, checkCatAssociatedItem.associatedItem);
+    }
     Cats *checkThisCatOut = [[GameData sharedGameData].allCatsInGame objectForKey:catsNames[1]];
     NSLog (@" This Cat's Name is %@ and its current loyalty is  %i", checkThisCatOut.name, checkThisCatOut.currLoyaltyCounter);
     NSLog (@"-----------------------------------------------------------");

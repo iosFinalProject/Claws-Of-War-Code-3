@@ -15,9 +15,10 @@ static NSString* const SSGameDataTotalTestArray = @"totalTestArray";
 static NSString* const SSGameDataCatsOnScreen = @"catsOnScreen1";
 static NSString* const SSGameDataItemsOnScreen = @"itemsOnScreen1";
 static NSString* const SSGameDataAllCatsInGame = @"allCatsInGame";
+static NSString* const SSGameDataAllItemsInGame = @"allItemsInGame";
 static NSString* const SSGameDataPreyPoints = @"preyPoints";
 
-
+///////// NEED TO ENCODE SPECIFIC ITEMS AND FOOD
 - (void)encodeWithCoder:(NSCoder *)encoder
 {
     [encoder encodeInt:self.highScore forKey: SSGameDataHighScoreKey];
@@ -25,6 +26,7 @@ static NSString* const SSGameDataPreyPoints = @"preyPoints";
     [encoder encodeObject: self.CatsAndPosOnScreen forKey: SSGameDataCatsOnScreen];
     [encoder encodeObject:self.ItemsAndPosOnScreen forKey:SSGameDataItemsOnScreen];
     [encoder encodeObject:self.allCatsInGame forKey:SSGameDataAllCatsInGame];
+    [encoder encodeObject:self.allItemsInGame forKey:SSGameDataAllItemsInGame];
     [encoder encodeInt: self.preyPoints forKey: SSGameDataPreyPoints];
     
     
@@ -39,7 +41,8 @@ static NSString* const SSGameDataPreyPoints = @"preyPoints";
         _CatsAndPosOnScreen = [decoder decodeObjectForKey: SSGameDataCatsOnScreen];
         _ItemsAndPosOnScreen = [decoder decodeObjectForKey: SSGameDataItemsOnScreen];
         _allCatsInGame = [decoder decodeObjectForKey: SSGameDataAllCatsInGame];
-        _preyPoints = [decoder decodeIntForKey: SSGameDataPreyPoints]; 
+        _allItemsInGame = [decoder decodeObjectForKey: SSGameDataAllItemsInGame];
+        _preyPoints = [decoder decodeIntForKey: SSGameDataPreyPoints];
         
         
     }

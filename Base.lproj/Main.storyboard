@@ -13,10 +13,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="moM-zF-7vg">
-                                <rect key="frame" x="114" y="214" width="80" height="30"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="map" id="lrR-WQ-qKb">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="StartButton"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="moM-zF-7vg">
+                                <rect key="frame" x="101" y="482" width="106" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.56102550659210515" green="0.95168585526315785" blue="0.65293482730263153" alpha="1" colorSpace="deviceRGB"/>
+                                <state key="normal" title="Start Game!"/>
                                 <connections>
                                     <segue destination="BV1-FR-VrT" kind="modal" id="OC5-iy-nuZ"/>
                                 </connections>
@@ -82,6 +87,9 @@
             <point key="canvasLocation" x="551" y="240"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="map" width="800" height="700"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="OC5-iy-nuZ"/>
     </inferredMetricsTieBreakers>

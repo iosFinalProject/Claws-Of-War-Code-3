@@ -12,6 +12,7 @@
 #import "GameData.h"
 #import "currentStateGameData.h"
 #import "Cats.h"
+#import "DecorativeItems.h"
 
 
 @implementation GameScene{
@@ -22,6 +23,12 @@
 bool foodInScene = false;
 
 -(void)didMoveToView:(SKView *)view {
+    float catScale = .40;
+    float itemScale = .40;
+    int itemZPosition = 8;
+    int catZPosition = 9;
+    //NSMutableArray *LizardPositions = [[NSMutableArray alloc] init];
+    //[LizardPositions addObject:@"lizard-pos-1.png"];
     
     [[GameData sharedGameData].testArray removeAllObjects]; 
 
@@ -34,9 +41,9 @@ bool foodInScene = false;
     [self addChild:_numClicks];
     
     _highScore = [[SKLabelNode alloc] initWithFontNamed:@"Futura-CondensedMedium"];
-    _highScore.fontSize = 12.0;
-    _highScore.position = CGPointMake((CGRectGetMidX(self.frame)+80),
-                                      (CGRectGetMidY(self.frame)-350));
+    _highScore.fontSize = 15.0;
+    _highScore.position = CGPointMake((CGRectGetMidX(self.frame)-167),
+                                      (CGRectGetMidY(self.frame)-365));
     _highScore.fontColor = [SKColor redColor];
     [self addChild:_highScore];
     
@@ -54,10 +61,10 @@ bool foodInScene = false;
     ////^^ Above Shit works
     
     
-     SKSpriteNode *cat1 = [SKSpriteNode spriteNodeWithImageNamed:@"MT1"];
+     /*SKSpriteNode *cat1 = [SKSpriteNode spriteNodeWithImageNamed:@"MT1"];
      cat1.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame));
      //cat1.zPosition = 1;
-     [self addChild: cat1];
+     [self addChild: cat1];*/
     
     /*if (foodInScene ==  false){
         
@@ -75,9 +82,15 @@ bool foodInScene = false;
     NSArray *keyArray = [currCatsAndPosOnScreen allKeys];
     //NSArray *keyArray = [[GameData sharedGameData].CatsAndPosOnScreen allKeys];
     
-    NSLog(@"%@", keyArray);
+    //NSLog(@"%@", keyArray);
     NSLog (@" How many Cats in currCatsAndPos: %i", [currCatsAndPosOnScreen count]);
+    NSArray *allCatsInCurrCatsAndPos = [currCatsAndPosOnScreen allKeys];
+    NSLog(@"Which cat in currCatsAndPos: %@", allCatsInCurrCatsAndPos);
     NSLog (@"  How many cats in gameshared data: %i", [[GameData sharedGameData].CatsAndPosOnScreen count]);
+    NSArray *allCatsInCatsAndPosOnScreen = [[GameData sharedGameData].CatsAndPosOnScreen allKeys];
+    NSLog(@"Which cat in CatsAndPosOnScreen: %@", allCatsInCatsAndPosOnScreen);
+
+
 
     if ([currCatsAndPosOnScreen count] != 0){
         
@@ -95,9 +108,22 @@ bool foodInScene = false;
 
     
     
-    SKSpriteNode *catnum1 = [SKSpriteNode spriteNodeWithImageNamed: @"MT1"];
+    /*SKSpriteNode *catnum1 = [SKSpriteNode spriteNodeWithImageNamed: @"MT1"];
     catnum1.position = CGPointMake((CGRectGetMidX(self.frame) - 150), (CGRectGetMidY(self.frame)- 150));
-    [self addChild: catnum1];
+    [self addChild: catnum1];*/  ///// <------ cat comes in through here
+    
+    for (int qwerty = 0; qwerty < [keyArray count]; qwerty ++){
+        Cats* actualCatToAdd = [[GameData sharedGameData].allCatsInGame objectForKey:keyArray[qwerty]];
+        NSString *picOfCat = actualCatToAdd.CatPositionPictures[0];
+        NSLog(@ "NAME OF CATTTTTTTTTTTTTTTTTT %@", actualCatToAdd.name); 
+        NSLog(@" PICTURE OF CATTTTTTTTTTTTTT, %@", picOfCat);
+        SKSpriteNode *catToAdd = [SKSpriteNode spriteNodeWithImageNamed: picOfCat];
+        catToAdd.xScale = catScale;
+        catToAdd.yScale = catScale;
+        catToAdd.zPosition = catZPosition;
+        catToAdd.position = CGPointMake((CGRectGetMidX(self.frame) - 160), (CGRectGetMidY(self.frame)- 140));
+        [self addChild: catToAdd];
+    }
     
     //// ^^^^ CAT ARRAYYYYYYYY
     
@@ -137,11 +163,21 @@ bool foodInScene = false;
 
     
     
-    SKSpriteNode *itemNum1 = [SKSpriteNode spriteNodeWithImageNamed: @"CatBed"];
+    /*SKSpriteNode *itemNum1 = [SKSpriteNode spriteNodeWithImageNamed: @"CatBed"];
     itemNum1.position = CGPointMake((CGRectGetMidX(self.frame) - 150), (CGRectGetMidY(self.frame)- 150));
     itemNum1.xScale = .3;
     itemNum1.yScale = .3;
-    [self addChild: itemNum1];
+    [self addChild: itemNum1];*/ // <---- item comes in through here
+    
+    for (int dsw = 0; dsw < [keyArrayItems count]; dsw ++){
+        DecorativeItems* actualItemToAdd = [[GameData sharedGameData].allItemsInGame objectForKey:keyArrayItems[dsw]];
+        SKSpriteNode *itemToAdd = [SKSpriteNode spriteNodeWithImageNamed: actualItemToAdd.picture];
+        itemToAdd.xScale = itemScale;
+        itemToAdd.yScale = itemScale;
+        itemToAdd.zPosition = itemZPosition;
+        itemToAdd.position = CGPointMake((CGRectGetMidX(self.frame) - 150), (CGRectGetMidY(self.frame)- 150));
+        [self addChild: itemToAdd];
+    }
     
     
     /////////////////////////////////////////// ^^ ITEM ARRAY
@@ -174,7 +210,7 @@ bool foodInScene = false;
     
     
     
-    _highScore.text = [NSString stringWithFormat:@"High: %i pt", [GameData sharedGameData].highScore];
+    _highScore.text = [NSString stringWithFormat:@"Prey Points: %i pt", [GameData sharedGameData].preyPoints];
     _numClicks.text = @"0 clicks";
 }
 
@@ -219,7 +255,7 @@ bool foodInScene = false;
 }
 
 -(void)update:(CFTimeInterval)currentTime {
-    _highScore.text = [NSString stringWithFormat:@"High: %i pt", [GameData sharedGameData].highScore];
+    _highScore.text = [NSString stringWithFormat:@"Prey Points: %i pt", [GameData sharedGameData].preyPoints];
     _numClicks.text = [NSString stringWithFormat:@"%i clicks", [GameData sharedGameData].numClicks];
     [[GameData sharedGameData] save];
 

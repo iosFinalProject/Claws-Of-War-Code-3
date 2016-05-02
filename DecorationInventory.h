@@ -18,7 +18,7 @@
 {
     IBOutlet UITableView *DecorationTableView;
     
-    NSArray *myData;
+    NSMutableArray *myData;
     
     NSString *itemSent;
     

@@ -76,8 +76,19 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
     // table view data is being set here
-    myData = [[GameData sharedGameData].allItemsInGame allKeys];
-    // Do any additional setup after loading the view, typically from a nib.
+    
+    // VV Before, it was just myData = [[GameData sharedGameData].allItemsInGame allKeys]
+    NSArray *myData1 = [[GameData sharedGameData].allItemsInGame allKeys];
+    myData = [[NSMutableArray alloc]init]; 
+    for (int fg = 0; fg < [myData1 count]; fg++){
+        DecorativeItems *perhapsItemAdd = [[GameData sharedGameData].allItemsInGame objectForKey:myData1[fg]];
+        if (perhapsItemAdd.isBought == YES){
+            [myData addObject:perhapsItemAdd.itemName];
+
+        }
+    }
+    
+       // Do any additional setup after loading the view, typically from a nib.
 }
 
 

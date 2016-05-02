@@ -27,18 +27,39 @@ bool foodInScene = false;
     float itemScale = .40;
     int itemZPosition = 8;
     int catZPosition = 9;
+    
+    int catSpatialPositionX1 = 160;
+    int catSpatialPositionY1 = 20;
+    int itemSpatialPositionX1 = 150;
+    int itemSpatialPositionY1 = 30;
+    
+    int catSpatialPositionX2 = 55;
+    int catSpatialPositionY2 = 250;
+    int itemSpatialPositionX2 = 90;
+    int itemSpatialPositionY2 = 265;
+    
+    int catSpatialPositionX3 = -80;
+    int catSpatialPositionY3 = 80;
+    int itemSpatialPositionX3 = -85;
+    int itemSpatialPositionY3 = 125;
+    
+    int catSpatialPositionX4 = -170;
+    int catSpatialPositionY4 = -200;
+    int itemSpatialPositionX4 = -160;
+    int itemSpatialPositionY4 = -170;
+    
     //NSMutableArray *LizardPositions = [[NSMutableArray alloc] init];
     //[LizardPositions addObject:@"lizard-pos-1.png"];
     
     [[GameData sharedGameData].testArray removeAllObjects]; 
 
     
-    _numClicks = [[SKLabelNode alloc] initWithFontNamed:@"Futura-CondensedMedium"];
+    /*_numClicks = [[SKLabelNode alloc] initWithFontNamed:@"Futura-CondensedMedium"];
     _numClicks.fontSize = 12.0;
     _numClicks.position = CGPointMake(CGRectGetMidX(self.frame),
                                         (CGRectGetMidY(self.frame)-350));
     _numClicks.fontColor = [SKColor blueColor];
-    [self addChild:_numClicks];
+    [self addChild:_numClicks];*/
     
     _highScore = [[SKLabelNode alloc] initWithFontNamed:@"Futura-CondensedMedium"];
     _highScore.fontSize = 15.0;
@@ -113,7 +134,32 @@ bool foodInScene = false;
     [self addChild: catnum1];*/  ///// <------ cat comes in through here
     
     for (int qwerty = 0; qwerty < [keyArray count]; qwerty ++){
+        int catSpatialPositionX = 0;
+        int catSpatialPositionY = 0;
         Cats* actualCatToAdd = [[GameData sharedGameData].allCatsInGame objectForKey:keyArray[qwerty]];
+        DecorativeItems *catsAssociatedItem = [[GameData sharedGameData].allItemsInGame objectForKey: actualCatToAdd.associatedItem];
+        if ([catsAssociatedItem.itemPosition  isEqual: @1]){
+            catSpatialPositionX = catSpatialPositionX1;
+            catSpatialPositionY = catSpatialPositionY1;
+        }
+        
+        else if ([catsAssociatedItem.itemPosition  isEqual: @2]){
+            catSpatialPositionX = catSpatialPositionX2;
+            catSpatialPositionY = catSpatialPositionY2;
+        }
+        
+        else if ([catsAssociatedItem.itemPosition  isEqual: @3]){
+            catSpatialPositionX = catSpatialPositionX3;
+            catSpatialPositionY = catSpatialPositionY3;
+        }
+        
+        else if ([catsAssociatedItem.itemPosition  isEqual: @4]){
+            catSpatialPositionX = catSpatialPositionX4;
+            catSpatialPositionY = catSpatialPositionY4;
+        }
+        
+        
+        
         NSString *picOfCat = actualCatToAdd.CatPositionPictures[0];
         NSLog(@ "NAME OF CATTTTTTTTTTTTTTTTTT %@", actualCatToAdd.name); 
         NSLog(@" PICTURE OF CATTTTTTTTTTTTTT, %@", picOfCat);
@@ -121,7 +167,7 @@ bool foodInScene = false;
         catToAdd.xScale = catScale;
         catToAdd.yScale = catScale;
         catToAdd.zPosition = catZPosition;
-        catToAdd.position = CGPointMake((CGRectGetMidX(self.frame) - 160), (CGRectGetMidY(self.frame)- 140));
+        catToAdd.position = CGPointMake((CGRectGetMidX(self.frame) - catSpatialPositionX), (CGRectGetMidY(self.frame)- catSpatialPositionY));
         [self addChild: catToAdd];
     }
     
@@ -170,12 +216,35 @@ bool foodInScene = false;
     [self addChild: itemNum1];*/ // <---- item comes in through here
     
     for (int dsw = 0; dsw < [keyArrayItems count]; dsw ++){
+        int itemPositionX = 0;
+        int itemPositionY = 0;
         DecorativeItems* actualItemToAdd = [[GameData sharedGameData].allItemsInGame objectForKey:keyArrayItems[dsw]];
+        
+        if ([actualItemToAdd.itemPosition isEqual: @1]){
+            itemPositionX = itemSpatialPositionX1;
+            itemPositionY = itemSpatialPositionY1;
+        }
+        
+        else if ([actualItemToAdd.itemPosition isEqual: @2]){
+            itemPositionX = itemSpatialPositionX2;
+            itemPositionY = itemSpatialPositionY2;
+        }
+        
+        else if ([actualItemToAdd.itemPosition isEqual: @3]){
+            itemPositionX = itemSpatialPositionX3;
+            itemPositionY = itemSpatialPositionY3;
+        }
+        
+        else if ([actualItemToAdd.itemPosition isEqual: @4]){
+            itemPositionX = itemSpatialPositionX4;
+            itemPositionY = itemSpatialPositionY4;
+        }
+        
         SKSpriteNode *itemToAdd = [SKSpriteNode spriteNodeWithImageNamed: actualItemToAdd.picture];
         itemToAdd.xScale = itemScale;
         itemToAdd.yScale = itemScale;
         itemToAdd.zPosition = itemZPosition;
-        itemToAdd.position = CGPointMake((CGRectGetMidX(self.frame) - 150), (CGRectGetMidY(self.frame)- 150));
+        itemToAdd.position = CGPointMake((CGRectGetMidX(self.frame) - itemPositionX), (CGRectGetMidY(self.frame)- itemPositionY));
         [self addChild: itemToAdd];
     }
     
@@ -186,7 +255,7 @@ bool foodInScene = false;
 
 
     
-    SKLabelNode *myLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
+    /*SKLabelNode *myLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
     
     //myLabel.text = getMyMutableArray()[1];
     NSString *stuffWrite =  [currCatsAndPosOnScreen objectForKey: @"320"];
@@ -205,30 +274,31 @@ bool foodInScene = false;
                                    CGRectGetMidY(self.frame));
     myLabel.zPosition = 7;
     
-    [self addChild:myLabel];
+    [self addChild:myLabel];*/
     
     
     
     
     _highScore.text = [NSString stringWithFormat:@"Prey Points: %i pt", [GameData sharedGameData].preyPoints];
-    _numClicks.text = @"0 clicks";
+    //_numClicks.text = @"0 clicks";
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     /* Called when a touch begins */
     
-    for (UITouch *touch in touches) {
+    /*for (UITouch *touch in touches) {
         if ([GameData sharedGameData].testArray == nil){
             [GameData sharedGameData].testArray = [[NSMutableArray alloc] init];
         }
-        /*[[GameData sharedGameData].testArray addObject: @"hey"];
-        for (int a = 0; a < [[GameData sharedGameData].testArray count]; a++){
-            NSString *testString = [GameData sharedGameData].testArray [a];
-            NSLog(testString);
-        }
-        NSLog (@"--------------");*/
+       //////////////////// /*[[GameData sharedGameData].testArray addObject: @"hey"];
+        /////for (int a = 0; a < [[GameData sharedGameData].testArray count]; a++){
+        ////    NSString *testString = [GameData sharedGameData].testArray [a];
+          /////  NSLog(testString);
+        ////}
+       /////// NSLog (@"--------------");
         
-        [currCatsAndPosOnScreen setObject:@"abccc" forKey: @"320"];
+        // !!!!@@@@@@@@@@@@@@@%%%%%%%%%%%%%%% VV deleted that just now.
+        //[currCatsAndPosOnScreen setObject:@"abccc" forKey: @"320"];
 
         [GameData sharedGameData].numClicks += 1;
         _numClicks.text = [NSString stringWithFormat:@"%i clicks", [GameData sharedGameData].numClicks];
@@ -251,12 +321,12 @@ bool foodInScene = false;
         [sprite runAction:[SKAction repeatActionForever:action]];
         
         [self addChild:sprite];
-    }
+    }*/
 }
 
 -(void)update:(CFTimeInterval)currentTime {
     _highScore.text = [NSString stringWithFormat:@"Prey Points: %i pt", [GameData sharedGameData].preyPoints];
-    _numClicks.text = [NSString stringWithFormat:@"%i clicks", [GameData sharedGameData].numClicks];
+    //_numClicks.text = [NSString stringWithFormat:@"%i clicks", [GameData sharedGameData].numClicks];
     [[GameData sharedGameData] save];
 
 

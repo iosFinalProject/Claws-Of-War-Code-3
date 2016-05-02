@@ -23,6 +23,12 @@
 
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     
+    [[GameData sharedGameData].ItemsAndPosOnScreen removeObjectForKey:@"Sunning Rocks"];
+    [currItemsAndPosOnScreen removeObjectForKey:@"Sunning Rocks"];
+    DecorativeItems *graniteBlock = [[GameData sharedGameData].allItemsInGame objectForKey:@"Sunning Rocks"];
+    graniteBlock.isOnScreen = NO;
+    graniteBlock.isBeingUsed = NO;
+    graniteBlock.itemPosition = @0;
     
     
     /*DecorativeItems *blackberryBush = [[GameData sharedGameData].allItemsInGame objectForKey:@"Blackberry Bush"];
@@ -442,6 +448,9 @@
     
     DecorativeItems *treeStump= [[GameData sharedGameData].allItemsInGame objectForKey:@"Tree Stump"];
     treeStump.isBought = YES;*/
+    
+    DecorativeItems *sunningRocks= [[GameData sharedGameData].allItemsInGame objectForKey:@"Sunning Rocks"];
+    sunningRocks.isBought = YES;
 
 
     
@@ -704,6 +713,7 @@
             [[GameData sharedGameData].CatsAndPosOnScreen setObject:itemTalkedAbout.itemPosition forKey:catsAvailableToGoOnScreen[randomNumGenerated]];
             Cats *catAboutToBeAddedOnScreen = [[GameData sharedGameData].allCatsInGame objectForKey:catsAvailableToGoOnScreen[randomNumGenerated]];
             catAboutToBeAddedOnScreen.onScreen = YES;
+            catAboutToBeAddedOnScreen.associatedItem = itemTalkedAbout.itemName; 
             NSLog (@"The cat that was added added to the currCatsAndPos is: %@ at position %@; the item it is associated with is %@", catsAvailableToGoOnScreen[randomNumGenerated], itemTalkedAbout.itemPosition, itemOnScreenAndNotBeingUsed[sdf]);
             [catsAvailableToGoOnScreen removeObjectAtIndex:randomNumGenerated];
             itemTalkedAbout.isBeingUsed = YES;

@@ -51,6 +51,7 @@
                  actualItemThatWasDeleted.isOnScreen = NO;
                  actualItemThatWasDeleted.isBeingUsed = NO;
                  actualItemThatWasDeleted.itemPosition = @0;
+                 actualItemThatWasDeleted.associatedCat = @"45678";
                  
              } // end if
          }// end for ---- end of dealing with Item to be deleted
@@ -84,8 +85,10 @@
          [[GameData sharedGameData].ItemsAndPosOnScreen setObject:@4 forKey: _addItem];
          [currItemsAndPosOnScreen setObject:@4 forKey:_addItem];
          DecorativeItems *actualItemToBeAdded = [[GameData sharedGameData].allItemsInGame objectForKey:_addItem];
-         actualItemToBeAdded.itemPosition = @4; 
-         actualItemToBeAdded.isBeingUsed = NO;
+         actualItemToBeAdded.itemPosition = @4;
+         if([actualItemToBeAdded.associatedCat isEqualToString:@"45678"]){
+             actualItemToBeAdded.isBeingUsed = NO;
+         }
          actualItemToBeAdded.isOnScreen = YES;
          
          
@@ -142,7 +145,10 @@
         [currItemsAndPosOnScreen setObject:@3 forKey:_addItem];
         DecorativeItems *actualItemToBeAdded = [[GameData sharedGameData].allItemsInGame objectForKey:_addItem];
         actualItemToBeAdded.itemPosition = @3;
+        //////VV if item has an associated cat, isBeingUsed does not equate to NO....remains as YES.
+        if([actualItemToBeAdded.associatedCat isEqualToString:@"45678"]){
         actualItemToBeAdded.isBeingUsed = NO;
+        }
         actualItemToBeAdded.isOnScreen = YES;
         
         
@@ -204,7 +210,9 @@
         [currItemsAndPosOnScreen setObject:@2 forKey:_addItem];
         DecorativeItems *actualItemToBeAdded = [[GameData sharedGameData].allItemsInGame objectForKey:_addItem];
         actualItemToBeAdded.itemPosition = @2;
+        if([actualItemToBeAdded.associatedCat isEqualToString:@"45678"]){
         actualItemToBeAdded.isBeingUsed = NO;
+        }
         actualItemToBeAdded.isOnScreen = YES;
         
         
@@ -263,7 +271,9 @@
         [currItemsAndPosOnScreen setObject:@1 forKey:_addItem];
         DecorativeItems *actualItemToBeAdded = [[GameData sharedGameData].allItemsInGame objectForKey:_addItem];
         actualItemToBeAdded.itemPosition = @1;
+        if([actualItemToBeAdded.associatedCat isEqualToString:@"45678"]){
         actualItemToBeAdded.isBeingUsed = NO;
+        }
         actualItemToBeAdded.isOnScreen = YES;
         
         

@@ -45,6 +45,8 @@
     
     DecorativeItems *sunningRocks2 = [[GameData sharedGameData].allItemsInGame objectForKey:@"Sunning Rocks"];
     sunningRocks2.picture = @"granite.png";*/
+    
+
 
     
     ///// Recomment in cats and items
@@ -491,13 +493,16 @@
     
     DecorativeItems *blackBush = [[GameData sharedGameData].allItemsInGame objectForKey:@"Blackberry Bush"];
     blackBush.itemPosition = @1;
+    blackBush.associatedCat = @"Lizard";
     [[GameData sharedGameData].ItemsAndPosOnScreen setObject:blackBush.itemPosition  forKey:@"Blackberry Bush"];
     Cats *lizard1  = [[GameData sharedGameData].allCatsInGame objectForKey:@"Lizard"];
     lizard1.associatedItem = @"Blackberry Bush";
     [[GameData sharedGameData].CatsAndPosOnScreen setObject:@1 forKey:@"Lizard"];
     
+    
     DecorativeItems *birdSkull = [[GameData sharedGameData].allItemsInGame objectForKey:@"Bird Skull"];
     birdSkull.itemPosition = @2;
+    birdSkull.associatedCat = @"Maple";
     [[GameData sharedGameData].ItemsAndPosOnScreen setObject:birdSkull.itemPosition  forKey:@"Bird Skull"];
     Cats * maple1 = [[GameData sharedGameData].allCatsInGame objectForKey:@"Maple"];
     maple1.associatedItem = @"Bird Skull";
@@ -506,6 +511,7 @@
     
    DecorativeItems *treeStump = [[GameData sharedGameData].allItemsInGame objectForKey:@"Tree Stump"];
     treeStump.itemPosition = @3;
+    treeStump.associatedCat = @"Sparrow";
     [[GameData sharedGameData].ItemsAndPosOnScreen setObject:treeStump.itemPosition  forKey:@"Tree Stump"];
     Cats *sparrow1  = [[GameData sharedGameData].allCatsInGame objectForKey:@"Sparrow"];
     sparrow1.associatedItem = @"Tree Stump";
@@ -514,6 +520,7 @@
     
     DecorativeItems *flatRock = [[GameData sharedGameData].allItemsInGame objectForKey:@"Small Flat Rock"];
     flatRock.itemPosition = @4;
+    flatRock.associatedCat = @"Cinder"; 
     [[GameData sharedGameData].ItemsAndPosOnScreen setObject:flatRock.itemPosition  forKey:@"Small Flat Rock"];
     Cats *cinder1  = [[GameData sharedGameData].allCatsInGame objectForKey:@"Cinder"];
     cinder1.associatedItem = @"Small Flat Rock";
@@ -717,6 +724,7 @@
             NSLog (@"The cat that was added added to the currCatsAndPos is: %@ at position %@; the item it is associated with is %@", catsAvailableToGoOnScreen[randomNumGenerated], itemTalkedAbout.itemPosition, itemOnScreenAndNotBeingUsed[sdf]);
             [catsAvailableToGoOnScreen removeObjectAtIndex:randomNumGenerated];
             itemTalkedAbout.isBeingUsed = YES;
+            itemTalkedAbout.associatedCat = catAboutToBeAddedOnScreen.name;
             
         }
         

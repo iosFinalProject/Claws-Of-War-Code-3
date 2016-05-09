@@ -89,6 +89,9 @@
          if([actualItemToBeAdded.associatedCat isEqualToString:@"45678"]){
              actualItemToBeAdded.isBeingUsed = NO;
          }
+         else{
+             [[GameData sharedGameData].CatsAndPosOnScreen setObject:@4 forKey:actualItemToBeAdded.associatedCat];
+         }
          actualItemToBeAdded.isOnScreen = YES;
          
          
@@ -108,6 +111,7 @@
                 [[GameData sharedGameData].ItemsAndPosOnScreen removeObjectForKey:allItemNamesOnScreen[thy]];
                 [currItemsAndPosOnScreen removeObjectForKey:allItemNamesOnScreen[thy]];
                 DecorativeItems *actualItemThatWasDeleted = [[GameData sharedGameData].allItemsInGame objectForKey:allItemNamesOnScreen[thy]];
+                actualItemThatWasDeleted.associatedCat = @"45678";
                 actualItemThatWasDeleted.isOnScreen = NO;
                 actualItemThatWasDeleted.isBeingUsed = NO;
                 actualItemThatWasDeleted.itemPosition = @0;
@@ -147,7 +151,10 @@
         actualItemToBeAdded.itemPosition = @3;
         //////VV if item has an associated cat, isBeingUsed does not equate to NO....remains as YES.
         if([actualItemToBeAdded.associatedCat isEqualToString:@"45678"]){
-        actualItemToBeAdded.isBeingUsed = NO;
+            actualItemToBeAdded.isBeingUsed = NO;
+        }
+        else{
+            [[GameData sharedGameData].CatsAndPosOnScreen setObject:@3 forKey:actualItemToBeAdded.associatedCat];
         }
         actualItemToBeAdded.isOnScreen = YES;
         
@@ -173,6 +180,7 @@
                 [[GameData sharedGameData].ItemsAndPosOnScreen removeObjectForKey:allItemNamesOnScreen[thy]];
                 [currItemsAndPosOnScreen removeObjectForKey:allItemNamesOnScreen[thy]];
                 DecorativeItems *actualItemThatWasDeleted = [[GameData sharedGameData].allItemsInGame objectForKey:allItemNamesOnScreen[thy]];
+                actualItemThatWasDeleted.associatedCat = @"45678";
                 actualItemThatWasDeleted.isOnScreen = NO;
                 actualItemThatWasDeleted.isBeingUsed = NO;
                 actualItemThatWasDeleted.itemPosition = @0;
@@ -211,7 +219,10 @@
         DecorativeItems *actualItemToBeAdded = [[GameData sharedGameData].allItemsInGame objectForKey:_addItem];
         actualItemToBeAdded.itemPosition = @2;
         if([actualItemToBeAdded.associatedCat isEqualToString:@"45678"]){
-        actualItemToBeAdded.isBeingUsed = NO;
+            actualItemToBeAdded.isBeingUsed = NO;
+        }
+        else{
+            [[GameData sharedGameData].CatsAndPosOnScreen setObject:@2 forKey:actualItemToBeAdded.associatedCat];
         }
         actualItemToBeAdded.isOnScreen = YES;
         
@@ -234,6 +245,7 @@
                 [[GameData sharedGameData].ItemsAndPosOnScreen removeObjectForKey:allItemNamesOnScreen[thy]];
                 [currItemsAndPosOnScreen removeObjectForKey:allItemNamesOnScreen[thy]];
                 DecorativeItems *actualItemThatWasDeleted = [[GameData sharedGameData].allItemsInGame objectForKey:allItemNamesOnScreen[thy]];
+                actualItemThatWasDeleted.associatedCat = @"45678";
                 actualItemThatWasDeleted.isOnScreen = NO;
                 actualItemThatWasDeleted.isBeingUsed = NO;
                 actualItemThatWasDeleted.itemPosition = @0;
@@ -272,7 +284,10 @@
         DecorativeItems *actualItemToBeAdded = [[GameData sharedGameData].allItemsInGame objectForKey:_addItem];
         actualItemToBeAdded.itemPosition = @1;
         if([actualItemToBeAdded.associatedCat isEqualToString:@"45678"]){
-        actualItemToBeAdded.isBeingUsed = NO;
+            actualItemToBeAdded.isBeingUsed = NO;
+        }
+        else{
+            [[GameData sharedGameData].CatsAndPosOnScreen setObject:@1 forKey:actualItemToBeAdded.associatedCat]; 
         }
         actualItemToBeAdded.isOnScreen = YES;
         
